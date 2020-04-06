@@ -64,7 +64,7 @@ if sys.version_info < (3, 0):
 
 
 settingspath = args.p or os.path.join(_CONFIG_DIR, "app.db")
-librarydbpath = args.l or os.path.join(_CONFIG_DIR, "")
+librarydbpath = args.d or os.path.join(_CONFIG_DIR, "")
 gdpath       = args.g or os.path.join(_CONFIG_DIR, "gdrive.db")
 
 # handle and check parameter for ssl encryption
