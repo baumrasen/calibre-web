@@ -329,11 +329,11 @@ def setup_db(config):
     dispose()
     global engine
 
-    if not config.config_calibre_dir:
+    if not config.config_calibre_librarydb_dir:
         config.invalidate()
         return False
 
-    dbpath = os.path.join(config.config_calibre_dir, "metadata.db")
+    dbpath = os.path.join(config.config_calibre_librarydb_dir, "metadata.db")
     if not os.path.exists(dbpath):
         config.invalidate()
         return False

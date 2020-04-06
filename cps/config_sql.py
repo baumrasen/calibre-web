@@ -46,6 +46,7 @@ class _Settings(_Base):
     mail_from = Column(String, default='automailer <mail@example.com>')
 
     config_calibre_dir = Column(String)
+    config_calibre_librarydb_dir = Column(String)
     config_port = Column(Integer, default=constants.DEFAULT_PORT)
     config_certfile = Column(String)
     config_keyfile = Column(String)
@@ -128,6 +129,7 @@ class _ConfigSQL(object):
         self._settings = None
         self.db_configured = None
         self.config_calibre_dir = None
+        self.config_calibre_librarydb_dir = None
         self.load()
 
     def _read_from_storage(self):
@@ -253,10 +255,10 @@ class _ConfigSQL(object):
         if self.config_google_drive_watch_changes_response:
             self.config_google_drive_watch_changes_response = json.loads(self.config_google_drive_watch_changes_response)
 
-        have_metadata_db = bool(self.config_calibre_dir)
+        have_metadata_db = bool(self.config_calibre_librarydb_dir)
         if have_metadata_db:
             if not self.config_use_google_drive:
-                db_file = os.path.join(self.config_calibre_dir, 'metadata.db')
+                db_file = os.path.join(self.config_calibre_librarydb_dir, 'metadata.db')
                 have_metadata_db = os.path.isfile(db_file)
         self.db_configured = have_metadata_db
 
@@ -281,6 +283,7 @@ class _ConfigSQL(object):
         log.warning("invalidating configuration")
         self.db_configured = False
         self.config_calibre_dir = None
+        self.config_calibre_librarydb_dir = None
         self.save()
 
 

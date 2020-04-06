@@ -36,6 +36,7 @@ def version_info():
 parser = argparse.ArgumentParser(description='Calibre Web is a web app'
                     ' providing a interface for browsing, reading and downloading eBooks\n', prog='cps.py')
 parser.add_argument('-p', metavar='path', help='path and name to settings db, e.g. /opt/cw.db')
+parser.add_argument('-d', metavar='path', help='path to library db, e.g. /opt/library')
 parser.add_argument('-g', metavar='path', help='path and name to gdrive db, e.g. /opt/gd.db')
 parser.add_argument('-c', metavar='path',
                     help='path and name to SSL certfile, e.g. /opt/test.cert, works only in combination with keyfile')
@@ -50,6 +51,8 @@ args = parser.parse_args()
 if sys.version_info < (3, 0):
     if args.p:
         args.p = args.p.decode('utf-8')
+    if args.d:
+        args.d = args.d.decode('utf-8')
     if args.g:
         args.g = args.g.decode('utf-8')
     if args.k:
@@ -61,6 +64,7 @@ if sys.version_info < (3, 0):
 
 
 settingspath = args.p or os.path.join(_CONFIG_DIR, "app.db")
+librarydbpath = args.l or os.path.join(_CONFIG_DIR, "")
 gdpath       = args.g or os.path.join(_CONFIG_DIR, "gdrive.db")
 
 # handle and check parameter for ssl encryption
