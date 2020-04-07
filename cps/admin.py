@@ -483,6 +483,7 @@ def basic_configuration():
 def _configuration_update_helper():
     reboot_required = False
     db_change = False
+    libdb_change = False
     to_save = request.form.to_dict()
 
     _config_string = lambda x: config.set_from_dictionary(to_save, x, lambda y: y.strip() if y else y)
@@ -491,6 +492,7 @@ def _configuration_update_helper():
     _config_checkbox_int = lambda x: config.set_from_dictionary(to_save, x, lambda y: 1 if (y == "on") else 0, 0)
 
     db_change |= _config_string("config_calibre_dir")
+    libdb_change |= _config_string("config_calibre_librarydb_dir")
 
     # Google drive setup
     if not os.path.isfile(gdriveutils.SETTINGS_YAML):
