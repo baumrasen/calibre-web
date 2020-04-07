@@ -18,6 +18,8 @@
     <div class="form-group required">
       <label for="config_calibre_dir">{{_('Location of Calibre Database')}}</label>
       <input type="text" class="form-control" name="config_calibre_dir" id="config_calibre_dir" value="{% if config.config_calibre_dir != None %}{{ config.config_calibre_dir }}{% endif %}" autocomplete="off">
+      <label for="config_calibre_librarydb_dir">{{_('Location of Calibre Library Database only Directory')}}</label>
+      <input type="text" class="form-control" name="config_calibre_librarydb_dir" id="config_calibre_librarydb_dir" value="{% if config.config_calibre_librarydb_dir != None %}{{ config.config_calibre_librarydb_dir }}{% endif %}" autocomplete="off">
     </div>
     {% if feature_support['gdrive']  %}
     <div class="form-group required">

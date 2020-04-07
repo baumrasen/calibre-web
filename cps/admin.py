@@ -621,7 +621,7 @@ def _configuration_update_helper():
         return _configuration_result(unrar_status, gdriveError)
 
     try:
-        metadata_db = os.path.join(config.config_calibre_dir, "metadata.db")
+        metadata_db = os.path.join(config.config_calibre_librarydb_dir, "metadata.db")
         if config.config_use_google_drive and is_gdrive_ready() and not os.path.exists(metadata_db):
             gdriveutils.downloadFile(None, "metadata.db", metadata_db)
             db_change = True
